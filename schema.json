@@ -1,0 +1,19 @@
+{
+  "deepseek_api_key": {
+    "type": "sensitive",
+    "name": "DeepSeek API Key",
+    "default": "",
+    "hint": "\u586b\u5199 DeepSeek API Key"
+  },
+  "siliconflow_api_key": {
+    "type": "sensitive",
+    "name": "SiliconFlow API Key",
+    "default": "",
+    "hint": "\u586b\u5199 SiliconFlow API Key"
+  },
+  "enable_keyword_trigger": {
+    "type": "switch",
+    "name": "\u542f\u7528\u5173\u952e\u8bcd\u89e6\u53d1",
+    "default": true
+  }
+}
