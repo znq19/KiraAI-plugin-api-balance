@@ -56,6 +56,47 @@
       }
     }
   },
+  "section_newapi_simple": {
+    "type": "section",
+    "name": "New API 站点（简易文本格式）",
+    "collapsed": true,
+    "fields": {
+      "newapi_sites_simple": {
+        "type": "list",
+        "name": "简易站点列表（每行一个，分号分隔）",
+        "default": [],
+        "hint": "每行格式：名称;base_url;系统访问令牌;纯数字用户ID;换算比例（可选，默认500000）\n示例：我的站点1;https://api.example.com;sk-xxxxxxxx;123456;500000"
+      }
+    }
+  },
+  "section_newapi": {
+    "type": "section",
+    "name": "New API 站点（JSON 格式）",
+    "collapsed": true,
+    "fields": {
+      "newapi_sites": {
+        "type": "json",
+        "name": "JSON 格式站点列表",
+        "default": [
+          {
+            "name": "示例站1",
+            "base_url": "https://api.example.com",
+            "api_key": "sk-xxxxxxxx",
+            "api_user": "123456",
+            "quota_conversion": 500000
+          },
+          {
+            "name": "示例站2",
+            "base_url": "https://api2.example.com",
+            "api_key": "sk-yyyyyyyy",
+            "api_user": "789012",
+            "quota_conversion": 500000
+          }
+        ],
+        "hint": "填写多个站点的配置，格式：[{\"name\": \"站点名称\", \"base_url\": \"https://xxx.com\", \"api_key\": \"系统访问令牌\", \"api_user\": \"纯数字用户ID\", \"quota_conversion\": 500000}, ...]。quota_conversion 表示 quota ÷ 该值 = 元，默认 500000。"
+      }
+    }
+  },
   "enable_keyword_trigger": {
     "type": "switch",
     "name": "启用关键词触发",
