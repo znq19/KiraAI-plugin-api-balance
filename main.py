@@ -163,9 +163,10 @@ class ApiBalancePlugin(BasePlugin):
         except Exception as e:
             return f"SiliconFlow查询失败：{e}"
 
-    # ========== 月之暗面 (Kimi) ==========
+    # ========== 月之暗面 Kimi ==========
     async def query_moonshot_balance(self):
-
+        """查询月之暗面 Kimi 账户余额"""
+    
         if not self.moonshot_api_key:
             return "未配置月之暗面 API Key"
 
@@ -177,8 +178,8 @@ class ApiBalancePlugin(BasePlugin):
                 ) as resp:
                     data = await resp.json()
 
-                    # 月之暗面返回格式：{"data": {"balance": 100.00}}
-                    balance = data.get("data", {}).get("balance")
+                    # 月之暗面返回字段是 available_balance
+                    balance = data.get("data", {}).get("available_balance")
 
                     if balance is None:
                         return f"查询失败: {data}"
