@@ -63,7 +63,7 @@
     "fields": {
       "newapi_sites_simple": {
         "type": "list",
-        "name": "简易站点列表（每行一个，分号分隔）",
+        "name": "简易站点列表（每行一个，英文分号分隔）",
         "default": [],
         "hint": "每行格式：名称;base_url;系统访问令牌;纯数字用户ID;换算比例（可选，默认500000）\n示例：我的站点1;https://api.example.com;sk-xxxxxxxx;123456;500000"
       }
