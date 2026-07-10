@@ -63,7 +63,7 @@
     "fields": {
       "newapi_sites_simple": {
         "type": "list",
-        "name": "简易站点列表（每行一个，英文分号分隔）",
+        "name": "简易站点列表（每行一个，分号分隔）",
         "default": [],
         "hint": "每行格式：名称;base_url;系统访问令牌;纯数字用户ID;换算比例（可选，默认500000）\n示例：我的站点1;https://api.example.com;sk-xxxxxxxx;123456;500000"
       }
@@ -97,9 +97,66 @@
       }
     }
   },
-  "enable_keyword_trigger": {
-    "type": "switch",
-    "name": "启用关键词触发",
-    "default": true
+  "section_command": {
+    "type": "section",
+    "name": "自定义命令控制",
+    "collapsed": false,
+    "fields": {
+      "enable_command": {
+        "type": "switch",
+        "name": "启用命令控制",
+        "default": false,
+        "hint": "开启后，用户可在群聊/私聊中发送命令词直接查询余额，无需经过 LLM。\n用法：命令词 [平台名]（如 /余额 deepseek 或 /余额 ds），不填平台则查询全部。"
+      },
+      "command_words": {
+        "type": "list",
+        "name": "触发命令词列表",
+        "default": ["/余额", "/余额查询"],
+        "hint": "用户输入列表中任意命令即可触发余额查询。每行一个，支持自定义。\n例如：添加 /mybalance、/check 等，匹配任意一个即生效。"
+      },
+      "allowed_users": {
+        "type": "list",
+        "name": "白名单用户",
+        "default": [],
+        "hint": "只有列表中的 QQ 号可以使用命令查询余额。留空表示所有人可查，每行一个 QQ 号。"
+      },
+      "permission_denied_message": {
+        "type": "string",
+        "name": "权限拒绝提示语",
+        "default": "❌ 权限不足：您没有查询余额的权限",
+        "hint": "当无权限用户触发命令时返回的消息，可自定义提示内容。"
+      },
+      "command_success_template": {
+        "type": "string",
+        "name": "单平台查询成功模板",
+        "default": "💳 {provider} 当前余额：{balance}",
+        "hint": "查询单个平台成功时的消息模板。\n可用占位符：{provider}（平台名称）、{balance}（余额金额）"
+      },
+      "command_all_template": {
+        "type": "string",
+        "name": "全部查询成功模板",
+        "default": "💳 各平台余额如下：\n{results}",
+        "hint": "查询全部平台成功时的消息模板。\n可用占位符：{results}（所有平台的查询结果汇总）"
+      },
+      "command_exact_match": {
+        "type": "switch",
+        "name": "开启全字匹配",
+        "default": false,
+        "hint": "关闭时，输入部分文字也能匹配到平台或站点（如输入'ds'匹配'deepseek'，输入'鸡'匹配'小鸡'、'大鸡'）。\n开启后，必须完全匹配才生效。"
+      }
+    }
+  },
+  "section_tool": {
+    "type": "section",
+    "name": "LLM 工具控制",
+    "collapsed": true,
+    "fields": {
+      "enable_tool": {
+        "type": "switch",
+        "name": "启用 LLM 工具调用",
+        "default": true,
+        "hint": "开启后，LLM 可通过 query_api_balance 工具自然语言查询余额（如用户说'查一下余额'）。\n关闭后 LLM 不会调用此工具，但仍可通过自定义命令直接查询。"
+      }
+    }
   }
 }
