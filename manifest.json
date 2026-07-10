@@ -1,8 +1,8 @@
 {
   "display_name": "API余额查询",
   "plugin_id": "kira-ai-plugin-api-balance",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "author": "ChuXia+znq19",
-  "description": "查询 DeepSeek  、SiliconFlow 、moonshot API 及 New API余额",
+  "description": "查询 DeepSeek、SiliconFlow、Moonshot API 及 New API 余额，支持命令触发和 LLM 工具调用",
   "repo": "https://github.com/ChuXia2004/plugin-api-balance"
 }
